@@ -19,3 +19,4 @@ def homePageView(request):
     </html>
     ''' % time.ctime()
     return HttpResponse(response_html)
+    
