@@ -22,4 +22,5 @@ urlpatterns = [
     path('hw/', include('hello_world.urls')),
     path('pages/', include('pages.urls')), # new! link in URLS from our app
     path('quotes/', include('quotes.urls')),
+    path('mini_fb/', include('mini_fb.urls')),
 ]

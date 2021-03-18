@@ -1,0 +1,36 @@
+<!-- profile/show_all_profiles.html -->
+
+<h1 style="color:rgb(66, 103,178);"> MiniFacebook </h1>
+
+<!-- display the context data -->
+<h2 style="color:rgb(66,103,178); font-size: 40pt;"><center> Showing all Profiles</center></h2>
+<tr style = "color: darklateblue"></tr>
+<table board = 1>
+    <colgroup>
+
+        <col span="1" style="width: 20%;">
+        <col span="1" style="width: 20%;">
+        <col span="1" style="width: 25%;">
+        <col span="1" style="width: 35%;">
+        <col span="1" style="width: 35%;">
+
+    </colgroup>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>City</th>
+        <th>Email Address</th>
+        <th>Profile Image</th>
+    </tr>
+    {% for profile in profiles %}
+    <tr>
+        <td><center>{{profile.first_name}}</center></td>
+        <td><center>{{profile.last_name}}</center></td>
+        <td><center>{{profile.city}}</center></td>
+        <td><center>{{profile.email_address}}</center></td>
+        <td><center><img src= "{{profile.profile_img_url}}" style = "max-width:200; max-height: 200"></center> </td>
+        {% endfor %}
+    </tr>
+</table>
+
+
