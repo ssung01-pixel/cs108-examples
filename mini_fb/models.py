@@ -15,4 +15,4 @@ class Profile(models.Model):
     def __str__(self):
         '''Return a string representation of this object. '''
 
-        return f'{self.first_name}, {self.last_name}, {self.city}, {self.email_address}, {self.profile_img_url}'
+        return f'{self.last_name}, {self.first_name}'
