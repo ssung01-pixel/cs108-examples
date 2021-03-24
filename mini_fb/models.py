@@ -16,3 +16,20 @@ class Profile(models.Model):
         '''Return a string representation of this object. '''
 
         return f'{self.last_name}, {self.first_name}' # how the string is represented on the django admin. 
+
+    def get_status_messages(self):
+        ''' Return a status messages for this Profile.'''
+        return StatusMessage.objects.filter(profile=self)
+
+class StatusMessage(models.Model):
+    ''' models the data attributes of Facebook status message. '''
+
+    timestamp = models.TimeField(auto_now = True)
+    message = models.TextField(blank=True)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+    def __str__(self):
+        ''' Return a string representation of this profile. '''
+        
+        return f'{self.timestamp} {self.message} {self.profile}'
+

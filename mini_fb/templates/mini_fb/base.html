@@ -1,0 +1,17 @@
+<!-- mini_fb/base.html-->
+<html>
+    <head>
+        <title> Home Page </title>
+        <body>
+
+        <header>
+            <h1 style="color:rgb(66, 103,178);"> MiniFacebook </h1>
+            <br>
+            <a href = "{% url 'show_all_profiles' %}"> Home </a>
+        </header>
+        <br>
+        {% block content %}
+        {% endblock %}
+
+    </body>
+</html>

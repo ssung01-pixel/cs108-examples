@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Profile # import the model that we want to use.
 # Create your views here.
 
@@ -13,3 +13,10 @@ class ShowAllProfilesView(ListView):
     model = Profile # retrieve Profile objects from the data database
     template_name = "mini_fb/show_all_profiles.html" # create template that I am going to display this data.
     context_object_name = "profiles" # name of the variable to access from within the data.
+
+class ShowProfilePageView(DetailView):
+    '''Dsiplay a single Profile object'''
+    model = Profile # retrieve Profile objects from the data database
+    template_name = "mini_fb/show_profile_page.html" # create template that I am going to display this data.
+    context_object_name = "profile" # name of the variable to access from within the data.
+

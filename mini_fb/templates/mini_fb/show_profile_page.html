@@ -1,0 +1,34 @@
+<!-- mini_fb/show_profile_page.html -->
+{% extends 'mini_fb/base.html' %}
+
+{% block content %}
+<body>
+
+
+
+    <tr> <!-- using the attributes and displaying each of them and centering them -->
+        <td><strong><center>{{profile.first_name}} {{profile.last_name}} </center></strong></td> <br>
+        <td><center><img src= "{{profile.profile_img_url}}" style = "max-width:200; max-height: 200"></center> </td> <br> <!-- adding an image and creating image source and sizing the picture size.-->
+        <td><center>{{profile.email_address}}</center></td> <br>
+        <td><center>{{profile.city}}</center></td> <br>
+    </tr> 
+
+    <table>
+        <tr><td><strong>Status Message</strong></td></tr>
+        <tr><th colspan="1" scope="colgroup">Time</th>
+            <th colspan="1" scope="colgroup">Message</th>
+        </tr>
+
+       
+    {% for sm in profile.get_status_messages %} 
+
+    <tr>
+        <tr><td></td></tr>
+        <td>{{sm.timestamp}}</td>
+        <td>{{sm.message}}</td>
+    </tr>
+    {% endfor %}
+    </table>
+ 
+{% endblock %}
+</body>
