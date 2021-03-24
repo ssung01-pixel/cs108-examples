@@ -1,0 +1,20 @@
+<!-- quotes/base.html-->
+<html>
+    <head>
+        <title>Quote Application</title>
+    </head>
+    <body>
+    <!-- Navigation links-->
+    <header>
+        <a href= "{% url 'random' %}" >Random Quote</a> |
+        <a href= "{% url 'all_quotes' %}" >Show All Quotes</a> |
+        <a href= "{% url 'create_quote' %}" >Create New Quote</a> |
+    </header>
+    <!-- this content block will be filled in by another template
+         which extends this base.html page. -->
+    <hr>
+    {% block content %}
+    {% endblock %}
+
+    </body>
+</html>

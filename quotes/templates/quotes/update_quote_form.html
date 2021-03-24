@@ -1,0 +1,21 @@
+<!-- template/quotes/update_quote_form.html -->
+{% extends 'quotes/base.html' %}
+
+{% block content %}
+
+<h1>Update a quote</h1>
+
+<form method = "POST"> <!-- HTTP POST to send data to the server -->
+    {% csrf_token %}
+
+    <table> 
+    {{form.as_table}} <!-- table-style formatting -->
+    <tr>
+        <td></td> <!-- empty! -->
+        <td><input type = "submit" value = "Update"></td>
+    </tr>
+    </table>
+    
+</form>
+
+{% endblock %}

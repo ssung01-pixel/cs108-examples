@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Quote, Person
+from .forms import CreateQuoteForm, UpdateQuoteForm
 import random
 
 # Create your views here.
@@ -36,3 +37,17 @@ class PersonPageView(DetailView):
     model = Person                        # retrieve Person objects from the database
     template_name = "quotes/person.html" # delegate the display to this template
     context_object_name = "person"       # use this variable in the template
+
+class CreateQuoteView(CreateView):
+    ''' Create a new Quote objct and store it in the database.'''
+
+    model = Quote # which model to create
+    form_class = CreateQuoteForm # which form to use to create the Quote
+    template_name = "quotes/create_quote_form.html" # delegate the display to this template
+
+class UpdateQuoteView(UpdateView):
+    ''' Create a Quote objct and store it in the database.'''
+
+    model = Quote # which model to create
+    form_class = UpdateQuoteForm # which form to use to create the Quote
+    template_name = "quotes/update_quote_form.html" # delegate the display to this template
