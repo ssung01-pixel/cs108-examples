@@ -1,6 +1,8 @@
-from django.db import models
+# File: models.py
+# Author: Sarinna Sung, (ssung101@bu.edu), 03/24/2021
+# Description: models.py will model the data attributes of Facebook users. Create your models here
 
-# Create your models here.
+from django.db import models
 
 class Profile(models.Model):
     ''' models the data attributes of Facebook users.'''
@@ -17,19 +19,19 @@ class Profile(models.Model):
 
         return f'{self.last_name}, {self.first_name}' # how the string is represented on the django admin. 
 
-    def get_status_messages(self):
+    def get_status_messages(self): 
         ''' Return a status messages for this Profile.'''
-        return StatusMessage.objects.filter(profile=self)
+        return StatusMessage.objects.filter(profile=self) # getting the status messages
 
 class StatusMessage(models.Model):
     ''' models the data attributes of Facebook status message. '''
 
-    timestamp = models.TimeField(auto_now = True)
-    message = models.TextField(blank=True)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    timestamp = models.TimeField(auto_now = True) # creating the time at which this status message was created/saved
+    message = models.TextField(blank=True) # creating the text of the status message
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE) # the foreign key to indicate the relationship to the Profile of the creator of this message
 
     def __str__(self):
         ''' Return a string representation of this profile. '''
         
-        return f'{self.timestamp} {self.message} {self.profile}'
+        return f'{self.timestamp} {self.message} {self.profile}' # how the string is represented in the django admin
 

@@ -1,17 +1,25 @@
 <!-- mini_fb/base.html-->
+<!-- Author: Sarinna Sung, (ssung101@bu.edu), 03/24/2021-->
+<!-- Use this file to create all of the standard HTML tags
+    (<head>, <body>, etc.) and to do any general formatting
+    for colors/fonts. -->
+
 <html>
+
     <head>
-        <title> Home Page </title>
+
+        <title> Home Page </title> <!-- displaying the tite of the home -->
         <body>
 
         <header>
-            <h1 style="color:rgb(66, 103,178);"> MiniFacebook </h1>
+            <h1 style="color:rgb(66, 103,178);"> MiniFacebook </h1> <!--which has a link to the main URL you have (show_all_profiles); this will allow users to return to the main page.-->
             <br>
-            <a href = "{% url 'show_all_profiles' %}"> Home </a>
+            <a href = "{% url 'show_all_profiles' %}"> Home </a> <!-- the home page is all the profiles shown-->
         </header>
         <br>
-        {% block content %}
+        {% block content %} <!--Create a content block to be filled in by the pages that inherit from base.html.-->
         {% endblock %}
+        </body>
 
-    </body>
+    </head>
 </html>

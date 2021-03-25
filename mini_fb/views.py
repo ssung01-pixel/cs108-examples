@@ -1,9 +1,11 @@
+# File: view.py
+# Author: Sarinna Sung, (ssung101@bu.edu), 03/24/2021
+# Description: Create your views here. create a class definition and inherit from
+# the ListView. List View allows us to present many objects of one model in a single screen. 
+
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Profile # import the model that we want to use.
-# Create your views here.
-
-# create a class definition and inherit from the ListView. List View allows us to present many objects of one model in a single screen. 
 
 class ShowAllProfilesView(ListView): 
     ''' Show the listing on Profile ''' 
