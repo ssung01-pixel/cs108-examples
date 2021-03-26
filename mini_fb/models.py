@@ -3,6 +3,7 @@
 # Description: models.py will model the data attributes of Facebook users. Create your models here
 
 from django.db import models
+from django.urls import reverse
 
 class Profile(models.Model):
     ''' models the data attributes of Facebook users.'''
@@ -22,6 +23,10 @@ class Profile(models.Model):
     def get_status_messages(self): 
         ''' Return a status messages for this Profile.'''
         return StatusMessage.objects.filter(profile=self) # getting the status messages
+
+    def get_absolute_url(self):
+        '''Provide a url to show this object '''
+        return reverse('show_profile_page', kwargs={'pk':self.pk})
 
 class StatusMessage(models.Model):
     ''' models the data attributes of Facebook status message. '''

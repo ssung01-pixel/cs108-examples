@@ -4,11 +4,12 @@
 # to the ShowAllProfilesView. 
 
 from django.urls import path # import the path function from the django urls library
-from .views import ShowAllProfilesView, ShowProfilePageView# our view class definition
+from .views import * # ShowAllProfilesView, ShowProfilePageView our view class definition
 
 urlpatterns = [
     path('', ShowAllProfilesView.as_view(), name = "show_all_profiles"), #  creating a list of URL patterns 
     path('profile/<int:pk>', ShowProfilePageView.as_view(), name = "show_profile_page"), #  creating a list of URL pattern to show profile
-
+    path('profile/<int:pk>/update', UpdateProfileView.as_view(), name = "update_profile"), #  creating a list of URL pattern to show profile
+    path('create_profile', CreateProfileView.as_view(), name = "create_profile"), #  creating a list of URL pattern to show profile
 
 ]
