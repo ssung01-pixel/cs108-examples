@@ -14,8 +14,8 @@
         <header>
             <h1 style="color:rgb(66, 103,178);"> MiniFacebook </h1> <!--which has a link to the main URL you have (show_all_profiles); this will allow users to return to the main page.-->
             <br>
-            <a href = "{% url 'show_all_profiles' %}"> Home </a>  |<!-- the home page is all the profiles shown-->
-            <a href = "{% url 'create_profile' %}"> Create a New Profile </a>  |<!-- the create new profile page-->
+            <a href = "{% url 'show_all_profiles' %}"> MiniFacebook Home </a>  |<!-- the home page is all the profiles shown-->
+            <a href = "{% url 'create_profile' %}"> Create Profile </a>  |<!-- the create new profile page-->
         </header>
         <br>
         {% block content %} <!--Create a content block to be filled in by the pages that inherit from base.html.-->

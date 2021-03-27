@@ -37,6 +37,21 @@
     </tr>
     {% endfor %} <!-- ending the loop -->
     </table>
+
+    <h1>Post a Status Message</h1> <!-- headings for status message-->
+
+    <form method="POST" action="{% url 'post_status_message' profile.pk %}"> <!-- HTTP POST to send data to the server -->
+        {% csrf_token %}
+        <table> 
+        {{create_status_form.as_table}} <!-- table-style formatting -->
+        <tr>
+            <td></td> <!-- empty! -->
+            <td><input type="submit" value="Share"></td>
+        </tr>
+        </table>
+        
+    </form>
+
  
 {% endblock %} <!--inherit from base.html endblock-->
 </body>

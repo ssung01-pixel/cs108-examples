@@ -1,9 +1,14 @@
 <!-- mini_fb/create_profile_form.html -->
+<!-- Author: Sarinna Sung, (ssung101@bu.edu), 03/24/2021-->
+<!--delegated work to the template called show_all_profiles.html rendering a table
+    Profile records, one per line. Include the first name, last name, city, and
+     a profile image, using the data attributes stored in the Profile model.
+-->
 {% extends 'mini_fb/base.html' %}
 
 {% block content %}
 
-<h1>Create a new profile</h1>
+<h1>Create Profile</h1>
 
 <form method="POST"> <!-- HTTP POST to send data to the server -->
     {% csrf_token %}

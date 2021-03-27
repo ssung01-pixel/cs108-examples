@@ -14,7 +14,6 @@ class Profile(models.Model):
     city = models.TextField(blank=True) # creating a city text feild
     email_address = models.TextField(blank=True) # creating a email address text field
     profile_img_url = models.URLField(blank=True) # creating a URL feild for the picture attribute
-
     def __str__(self):
         '''Return a string representation of this object. '''
 
@@ -26,7 +25,7 @@ class Profile(models.Model):
 
     def get_absolute_url(self):
         '''Provide a url to show this object '''
-        return reverse('show_profile_page', kwargs={'pk':self.pk})
+        return reverse('show_profile_page', kwargs={'pk':self.pk}) #return a URL to show this one profile
 
 class StatusMessage(models.Model):
     ''' models the data attributes of Facebook status message. '''
