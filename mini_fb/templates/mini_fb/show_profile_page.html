@@ -33,14 +33,20 @@
     <tr>
         <tr><td></td></tr>
         <td>{{sm.timestamp}}</td> <!-- getting the status messages from profile and displaying each of the timestamp-->
-        <td>{{sm.message}}</td> <!-- getting the status messages from profile and displaying each of the messages-->
+        <td>{{sm.message}} <!-- getting the status messages from profile and displaying each of the messages-->
+        {% if sm.image_file %}
+        <img src='{{sm.image_file.url}}' style='max-width: 100;'>
+        {% endif %}
+        </td>
     </tr>
     {% endfor %} <!-- ending the loop -->
     </table>
 
     <h1>Post a Status Message</h1> <!-- headings for status message-->
 
-    <form method="POST" action="{% url 'post_status_message' profile.pk %}"> <!-- HTTP POST to send data to the server -->
+    <form method="POST" action="{% url 'post_status_message' profile.pk %}" 
+        enctype="multipart/form-data"> <!-- HTTP POST to send data to the server -->
+        
         {% csrf_token %}
         <table> 
         {{create_status_form.as_table}} <!-- table-style formatting -->
@@ -51,7 +57,4 @@
         </table>
         
     </form>
-
- 
-{% endblock %} <!--inherit from base.html endblock-->
-</body>
+{% endblock %}

@@ -76,12 +76,12 @@ class DeleteQuoteView(DeleteView):
         ''' Return a the URL to which we should be directed after the delete. '''
         
         # get the pk for this quote
-        pk = self.kwargs.get('pk')
+        pk = self.kwargs.get('pk') # find the pk of the quote being deleted
         quote = Quote.objects.filter(pk=pk).first() # get one object form QuerySet
 
         #find the person associated with the quote
         person = quote.person
-        return reverse('person', kwargs ={'pk':person.pk})
+        return reverse('person', kwargs ={'pk':person.pk}) # show the person page for 
 
         #reverse to show the person page
 
@@ -99,7 +99,7 @@ def add_image(request, pk):
 
         image = form.save(commit=False) # create the Image object, but not save
         image.person = person
-        image.save() # story to the database
+        image.save() # store to the database
 
     else:
         print("Error: the form was not valid. ")

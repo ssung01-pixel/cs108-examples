@@ -22,17 +22,21 @@ class ShowProfilePageView(DetailView):
     model = Profile                                     # retrieve Profile objects from the data database
     template_name = "mini_fb/show_profile_page.html"    # create template that I am going to display this data.
     context_object_name = "profile"                     # name of the variable to access from within the data.
+    
     def get_context_data(self, **kwargs):
         '''Return the context data (a dictionary) to be used in the template.'''
 
         # obtain the default context data (a dictionary) from the superclass; 
         # this will include the Profile record to display for this page view
         context = super(ShowProfilePageView, self).get_context_data(**kwargs)
+        
         # create a new CreateStatusMessageForm, and add it into the context dictionary
         form = CreateStatusMessageForm() 
         context['create_status_form'] = form
+        
         # return this context dictionary
         return context
+
 class CreateProfileView(CreateView):
     ''' Create a new Profile Object and store it into the database'''
     model = Profile                                     # retrieve Profile objects from the data database         
@@ -56,7 +60,7 @@ def post_status_message(request, pk):
         # print(request.POST) # for debugging at the console
 
         # create the form object from the request's POST data
-        form = CreateStatusMessageForm(request.POST or None)
+        form = CreateStatusMessageForm(request.POST or None, request.FILES or None)
 
         if form.is_valid():
 
