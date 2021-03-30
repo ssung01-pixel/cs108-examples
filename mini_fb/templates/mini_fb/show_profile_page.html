@@ -21,23 +21,24 @@
         <td><center><a href = "{% url 'update_profile' profile.pk %}">Edit this Profile</a>  </center></td> 
     </tr> 
 
+    <h1> <strong>Status Message</strong><!-- displaying the Status Message name--></h1>
     <table>
-        <tr><td><strong>Status Message</strong></td></tr> <!-- displaying the Status Message name-->
         <tr><th colspan="1" scope="colgroup">Time</th> <!-- displaying the Time name-->
-            <th colspan="1" scope="colgroup">Message</th> <!-- displaying the Message name-->
+            <th colspan="2" scope="colgroup">Message</th> <!-- displaying the Message name-->
         </tr>
 
-       
+   
     {% for sm in profile.get_status_messages %} <!-- creating a loop to go through the profiles messages to print out the messages that the person has-->
 
     <tr>
         <tr><td></td></tr>
         <td>{{sm.timestamp}}</td> <!-- getting the status messages from profile and displaying each of the timestamp-->
         <td>{{sm.message}} <!-- getting the status messages from profile and displaying each of the messages-->
-        {% if sm.image_file %}
-        <img src='{{sm.image_file.url}}' style='max-width: 100;'>
+        {% if sm.image_file %} <!-- if it is an image_file then display it-->
+        <img src='{{sm.image_file.url}}' style='max-width: 100;'> <!-- getting the image and displaying-->
         {% endif %}
         </td>
+        <td> <a href = "{% url 'delete_status_message' profile_pk=profile.pk  status_pk=sm.pk%}"> delete </a></td> <!-- link to delete status messages-->
     </tr>
     {% endfor %} <!-- ending the loop -->
     </table>

@@ -1,0 +1,22 @@
+<!-- File: mini_fb/delete_status_form.html -->
+<!-- Author: Sarinna Sung, (ssung101@bu.edu), 03/29/2021-->
+<!-- Description: This file will have 2 small forms: One to confirm the delete. It will 
+    send a POST back to the same URL at which you are trying to do the delete.
+    One to cancel the delete. It will send a GET to URL to redisplay the profile page. -->
+
+<h3> Are you sure you want to delete this status message?</h3> <!-- heading if they want to delete status message-->
+
+{{st_msg.message}} <!-- displaying status message either to delete or not-->
+<p>
+
+</p>
+
+<form method = 'POST'> <!-- One to confirm the delete. It will send a POST back to the same URL at which you are trying to do the delete. -->
+    {% csrf_token %}
+    <input type = 'submit' name = "yes" value = "yes">
+</form>
+
+<form method = 'GET' action = "{% url 'show_profile_page' st_msg.pk %}"> <!-- One to confirm the delete. It will send a POST back to the same URL at which you are trying to do the delete. -->
+    {% csrf_token %}
+    <input type = 'submit' name = "no" value = "no">
+</form>

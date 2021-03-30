@@ -4,8 +4,8 @@
 # the ListView. List View allows us to present many objects of one model in a single screen. 
 
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from .models import Profile                          # import the model that we want to use.
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from .models import Profile, StatusMessage
 from .forms import CreateProfileForm, UpdateProfileForm, CreateStatusMessageForm
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -50,9 +50,7 @@ class UpdateProfileView(UpdateView):
     template_name = "mini_fb/update_profile_form.html"  # create template that I am going to display this data.
 
 def post_status_message(request, pk):
-    '''
-    Process a form submission to post a new status message.
-    '''
+    ''' Process a form submission to post a new status message. '''
 
     # if and only if we are processing a POST request, try to read the data
     if request.method == 'POST':
@@ -79,3 +77,50 @@ def post_status_message(request, pk):
     # redirect the user to the show_profile_page view
     url = reverse('show_profile_page', kwargs={'pk': pk})
     return redirect(url)
+
+class DeleteStatusMessageView(DeleteView):
+    ''' Create a new profile object and store it into the database'''                                          
+    template_name = "mini_fb/delete_status_form.html"
+    queryset = Profile.objects.all()
+    success_url = "../../all" # what to do after deleting a quote
+
+    def get_context_data(self, **kwargs):
+        ''' Return a dictionary with context data for this template to use. '''
+
+        # get the default context data:
+        # this will include theDeleteStatusMessageView record for this page view
+        context = super(DeleteStatusMessageView, self).get_context_data(**kwargs)
+        st_msg = StatusMessage.objects.get(pk=self.kwargs['status_pk'])
+
+        # what is inside the brackets is the inside of URL, st_msg as the key and value as well. storing this new object into the dictionary.
+        context['st_msg']= st_msg 
+
+        #return the context dictionary:
+        return context
+
+    def get_object(self):
+        ''' the objective of which is to return the StatusMessage object that should be deleted. '''
+        # read the URL data values into variables
+        profile_pk = self.kwargs['profile_pk']
+        status_pk = self.kwargs['status_pk']
+
+        # find the StatusMessage object
+        status = StatusMessage.objects.filter(pk = status_pk , profile=profile_pk) # get one object form QuerySet
+
+        # return status message object
+        return status 
+
+    def get_success_url(self):
+        ''' Return a the URL to which we should be directed after the delete. '''
+        # read the URL data values into variables
+        # get the pk for the profile and status 
+        profile_pk = self.kwargs['profile_pk'] # find the profile_pk of the message being deleted
+
+        #attribute(models.py) = variable (local to this function)
+        profile = Profile.objects.filter(pk=profile_pk).first() # get one object form QuerySet
+        
+        #find the person associated with the message
+        # using profile.pk is the same right now as profile_pk but its better to use profile.pk
+        # _ using to name variables in python
+        # . is the class and then accessessing the attribute profile.pk
+        return reverse('show_profile_page', kwargs ={'pk':profile.pk}) 
