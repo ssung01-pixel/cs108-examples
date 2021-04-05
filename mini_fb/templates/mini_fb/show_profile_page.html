@@ -58,4 +58,24 @@
         </table>
         
     </form>
+    <table>
+
+    <h1> {{profile.first_name}}'s Friends </h1>
+
+    {% if profile.get_friends %} <!-- if the method is returning anything. get_friend method query set-->
+
+        {% for friend in profile.get_friends %}
+            <tr><td><a href = "{% url 'show_profile_page' friend.pk %}" >{{friend.first_name}} {{friend.last_name}} </a></td> <!-- that is the actual process that is used in the hyperlink anchor tage everything inside is the process that I am applying <a    inside here> -->
+            <td><img src= "{{friend.profile_img_url}}" style = "max-width:200; max-height: 200"></td></tr>
+
+            <!-- tr is one row 
+            td that is one instance in a column 
+            tr in three td tags is one row and 3 values in three diffferent column. -->
+    {% endfor %}<!-- of the for loop-->
+
+    {% else %}
+        {{friend.first_name}} doesn't have any friends.
+    {% endif %} <!-- ending the conditonal statement-->
+
+    </table>
 {% endblock %}

@@ -14,6 +14,8 @@ class Profile(models.Model):
     city = models.TextField(blank=True) # creating a city text feild
     email_address = models.TextField(blank=True) # creating a email address text field
     profile_img_url = models.URLField(blank=True) # creating a URL feild for the picture attribute
+    friends = models.ManyToManyField("self", blank=True) # blank = true that means not everything is not required. one profile doesnt need friends self is refereed to the profile object
+
     def __str__(self):
         '''Return a string representation of this object. '''
 
@@ -26,6 +28,10 @@ class Profile(models.Model):
     def get_absolute_url(self):
         '''Provide a url to show this object '''
         return reverse('show_profile_page', kwargs={'pk':self.pk}) #return a URL to show this one profile
+
+    def get_friends(self):
+        ''' on class Profile that will return all friends for this Profile. '''
+        return self.friends.all()
 
 class StatusMessage(models.Model):
     ''' models the data attributes of Facebook status message. '''
