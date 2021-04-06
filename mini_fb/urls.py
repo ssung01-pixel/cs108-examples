@@ -14,4 +14,5 @@ urlpatterns = [
     path('create_profile', CreateProfileView.as_view(), name = "create_profile"),           #  adding a create profile 
     path('profile/<int:pk>/post_status', post_status_message, name = "post_status_message"), #  adding a post status message
     path('profile/<int:profile_pk>/delete_status/<int:status_pk>',DeleteStatusMessageView.as_view(), name = "delete_status_message"), # adding a delete status for the status message
+    path('profile/<int:pk>/news_feed', ShowNewsFeedView.as_view(), name = "news_feed"), # adding a newsfeed page
 ]

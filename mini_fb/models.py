@@ -32,11 +32,27 @@ class Profile(models.Model):
     def get_friends(self):
         ''' on class Profile that will return all friends for this Profile. '''
         return self.friends.all()
+    
+    def get_news_feed(self):
+        ''' method on the Profile class that will obtain and return the new feed items. Specifically, this will return a QuerySet of all StatusMessages by this Profile and all of its friends.'''
+
+        news = StatusMessage.objects.all().order_by("-timestamp")  # this is to order all the status message -timestamp is from the newest status message to the oldest.
+        # go through lsit and find everybody that profile = that
+
+        friends = self.get_friends() # getting list of all friends
+
+        friends_news = news.filter(profile__in=friends) # filtering people that are only the person in profile's messages
+
+        self_news = news.filter(profile=self.pk)  # filtering people that are only the person in profile's friends 
+
+        total = self_news | friends_news # merging both of the filtered out messeges of the profile's person and their friends
+
+        return total # return the merged messages of profile's person and their friends
 
 class StatusMessage(models.Model):
     ''' models the data attributes of Facebook status message. '''
 
-    timestamp = models.TimeField(auto_now=True) # creating the time at which this status message was created/saved
+    timestamp = models.TimeField(auto_now=True) # creating the time at which this status message was created/saved DateTimeFeild for the date and the time autoadd now is when the message auto generate time was posted at
     message = models.TextField(blank=True) # creating the text of the status message
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE) # the foreign key to indicate the relationship to the Profile of the creator of this message
     image_file = models.ImageField(blank = True) # an actual image

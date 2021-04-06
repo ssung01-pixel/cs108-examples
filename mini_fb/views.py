@@ -124,3 +124,10 @@ class DeleteStatusMessageView(DeleteView):
         # _ using to name variables in python
         # . is the class and then accessessing the attribute profile.pk
         return reverse('show_profile_page', kwargs ={'pk':profile.pk}) 
+
+class ShowNewsFeedView(DetailView):
+    ''' This base class will do everything we want, without overriding any methods.
+    Set the template_name and model attributes as you have done in the past when using the DetailView. '''
+    model = Profile                                     # retrieve Profile objects from the data database
+    template_name = "mini_fb/show_news_feed.html"    # create template that I am going to display this data.
+    context_object_name = "profile"                     # name of the variable to access from within the data.
