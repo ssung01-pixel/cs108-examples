@@ -131,3 +131,19 @@ class ShowNewsFeedView(DetailView):
     model = Profile                                     # retrieve Profile objects from the data database
     template_name = "mini_fb/show_news_feed.html"    # create template that I am going to display this data.
     context_object_name = "profile"                     # name of the variable to access from within the data.
+
+class ShowPossibleFriendsView(DetailView):
+    '''  which inherits from the generic DetailView class. The base class will do everything we want, without overriding any methods.'''
+    model = Profile # retrieve Profile objects from the data database
+    template_name = "mini_fb/show_possible_friends.html" # create template that I am going to display this data.
+
+def add_friend(request, profile_pk, friend_pk):
+    ''' The objective of this function is to process the add_friend request, to add a friend for a given profile. '''
+    profile = Profile.objects.get(pk=profile_pk) # getting our profile object
+    friend = Profile.objects.get(pk=friend_pk) # getting your friends profile object
+    
+    profile.friends.add(friend) # adding the profile of the friends and adding that friend to your friend list
+    profile.save() # saving that profile 
+
+    url = reverse('show_profile_page', kwargs={'pk': profile_pk}) # going to the show profile page and the profile originally
+    return redirect(url) # redirecting you to that url

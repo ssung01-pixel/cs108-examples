@@ -31,7 +31,7 @@ class Profile(models.Model):
 
     def get_friends(self):
         ''' on class Profile that will return all friends for this Profile. '''
-        return self.friends.all()
+        return self.friends.all() # returning all the friends
     
     def get_news_feed(self):
         ''' method on the Profile class that will obtain and return the new feed items. Specifically, this will return a QuerySet of all StatusMessages by this Profile and all of its friends.'''
@@ -48,6 +48,12 @@ class Profile(models.Model):
         total = self_news | friends_news # merging both of the filtered out messeges of the profile's person and their friends
 
         return total # return the merged messages of profile's person and their friends
+
+    def get_friend_suggestions(self):
+        '''  method on the Profile class that will obtain and return a QuerySet of all Profile that could be added as friends. '''
+        possible_friends = Profile.objects.exclude(pk__in=self.friends.all()) # getting all the possible friends that are not your friends
+        possible_friends = possible_friends.exclude(pk=self.pk) # excluding yourself as a friend
+        return possible_friends # returning possible friends
 
 class StatusMessage(models.Model):
     ''' models the data attributes of Facebook status message. '''

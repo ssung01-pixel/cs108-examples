@@ -11,7 +11,7 @@
 
 <body>
     <a href = "{% url 'news_feed' profile.pk %}"> {{profile.first_name}} New's Feed </a>  |<!-- the home page is all the profiles shown-->
-
+    <a href = "{% url 'show_possible_friends' profile.pk %}"> {{profile.first_name}} Show Possible Friends </a>  |<!-- the home page is all the profiles shown-->
 
     <tr> <!-- using the attributes and displaying each of them and centering them -->
         <td><strong><center>{{profile.first_name}} {{profile.last_name}} </center></strong></td> <br> <!-- displaying the first name and last name of the specific profile -->

@@ -1,0 +1,45 @@
+<!-- show_possible_friends.html -->
+<!-- author: Sarinna Sung (ssung101@bu.edu), 04/05/2021-->
+<!-- This template page should show the possible friends (i.e., objects of type Profile)
+     in a nicely formatted table. You can probably re-use a lot of the code that displays 
+     the table of status messages in the news feed page, and adjust it to work with the list
+     of possible friends.-->
+
+        <h1>  Friend Suggestions for {{profile.first_name}} </h1> <!-- heading for the profiles persons friends-->
+        <a href = "{% url 'show_profile_page' profile.pk %}"> Back to {{profile.first_name}}'s profile page  </a>  <!-- link to go back to profile page -->
+        
+        {% if profile.get_friends %} <!-- if the method is returning anything. get_friend method query set-->
+        <table>
+                
+        <colgroup> <!-- Adjusting the colum width and how it looks on the table-->
+
+            <col span="1" style="width: 0%;">
+            <col span="1" style="width: 0%;">
+            <col span="1" style="width: 70%;">
+            <col span="1" style="width: 20%;">
+            <col span="1" style="width: 20%;">
+            <col span="1" style="width: 10%;">
+            
+
+        </colgroup>
+            {% for friend in profile.get_friend_suggestions %} <!-- for every friend of that profile it would show the friend name is displayed and link to their profile page and picture of their friend-->
+                <td></td>
+                <tr><td><center><img src= "{{friend.profile_img_url}}" style = "max-width:200; max-height: 200"></center><br><!-- displaying image of that friends profile -->
+                <td></td>
+                <td><center><a href = "{% url 'show_profile_page' friend.pk %}" > {{friend.first_name}} {{friend.last_name}} <br></center></a></td>
+                <!-- that is the actual process that is used in the hyperlink anchor tage everything inside is the process that I am applying <a inside here> -->
+                <!-- tr is one row, td that is one instance in a column , tr in three td tags is one row and 3 values in three diffferent column. -->
+                <td>
+                <form method = 'GET' action = "{% url 'add_friend' profile_pk=profile.pk friend_pk=friend.pk%}"> <!-- getting the friend profile and your profile and adding the profiles into the friend list-->
+                    {% csrf_token %}
+                    <input type = 'submit' name = "Add Friend" value = "Add Friend"> <!-- button to add friend-->
+                </form>
+            </td>
+            {% endfor %}<!-- of the for loop-->
+    
+        </table> 
+        {% else %}
+            {{friend.first_name}} doesn't have any friends. <!-- if that profile doesnt have any friends it would display this-->
+        {% endif %} <!-- ending the conditonal statement-->
+
+        
