@@ -22,9 +22,12 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hw/', include('hello_world.urls')),
-    path('pages/', include('pages.urls')), # new! link in URLS from our app
+    path('pages/', include('pages.urls')), 
     path('quotes/', include('quotes.urls')),
     path('mini_fb/', include('mini_fb.urls')),
+    path('project/', include('project.urls')),
+     # new! link in URLS from our app
+    
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

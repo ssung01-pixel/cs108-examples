@@ -1,0 +1,49 @@
+<!-- profile/show_all_profiles.html -->
+<!-- Author: Sarinna Sung, (ssung101@bu.edu), 03/24/2021-->
+<!-- delegated work to the template called show_all_profiles.html rendering a table
+    Profile records, one per line. Include the first name, last name, city, and
+     a profile image, using the data attributes stored in the Profile model.
+-->
+
+<!--inherit from base.html-->
+{% extends 'project/base.html' %}
+{% block content %}
+
+<h1 style="color:rgb(66, 103,178);"> Project </h1> <!--which has a link to the main URL you have (show_all_profiles); this will allow users to return to the main page.-->
+<!-- display the context data -->
+<h2 style="color:rgb(66,103,178); font-size: 40pt;"><center> Showing all Profiles</center></h2> <!-- Creating a new heading for showing all the profiles, adding a color, adding a font size, and centering-->
+
+<table > <!-- Creating a table--> 
+    
+    <colgroup> <!-- Adjusting the colum width and how it looks on the table-->
+
+        <col span="1" style="width: 20%;">
+        <col span="1" style="width: 20%;">
+        <col span="1" style="width: 25%;">
+        <col span="1" style="width: 35%;">
+        <col span="1" style="width: 35%;">
+
+    </colgroup>
+    <tr> <!-- Adding the column names on the table -->
+        <th>Name</th> 
+        <th>City</th>
+        <th>Email Address</th>
+        <th>Profile Image</th>
+    </tr>
+
+    {% for profile in profiles %} <!-- create a loop to display the first name, last name, city, email address, image if the person -->
+    
+    <tr> <!-- using the attributes and displaying each of them and centering them -->
+        <td><center><a href = "{% url 'show_profile_page' profile.pk %}">{{profile.first_name}} {{profile.last_name}}</a>  </center></td> <!-- from the homepage this will provide a link for each of the profiles there is a link directed to the seperate profile-->
+        <td><center>{{profile.city}}</center></td>  <!-- the attribute for the profile's city-->
+        <td><center>{{profile.email_address}}</center></td> <!-- the attribute for the profile's email address-->
+        <td><center><img src= "{{profile.profile_img_url}}" style = "max-width:200; max-height: 200"></center></td> <!-- adding an image and creating image source and sizing the picture size.-->
+    </tr>
+
+    {% endfor %} <!-- to end the loop we need this statement -->
+
+
+</table>
+{% endblock %} <!-- from the base.html endblock-->
+
+
