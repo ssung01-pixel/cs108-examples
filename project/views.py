@@ -22,14 +22,14 @@ class ShowAllProfilesView(ListView):
 class ShowAllDoctorsProfilesView(ListView):
     ''' Show the listing of the Doctors profile'''
     model = Doctor
-    template = "project/show_all_doctors_profiles.html"
+    template_name = "project/show_all_doctors_profiles.html"
     context_object_name = "drprofiles"
 
 class ShowDoctorsProfilePageView(DetailView):
     '''Display a single Profile object'''
     model = Doctor                                   # retrieve Profile objects from the data database
     template_name = "project/show_doctors_profile_page.html"    # create template that I am going to display this data.
-    context_object_name = "drprofiles"                     # name of the variable to access from within the data.
+    context_object_name = "profile"                     # name of the variable to access from within the data.
     
 class ShowProfilePageView(DetailView):
     '''Display a single Profile object'''

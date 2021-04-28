@@ -9,7 +9,7 @@ from .views import * # ShowAllProfilesView, ShowProfilePageView our view class d
 urlpatterns = [
     path('', ShowAllProfilesView.as_view(), name = "show_all_profiles"),                    #  showing all profiles
     path('doctors', ShowAllDoctorsProfilesView.as_view(), name = "doctors"),
-    path('drprofile/<int:pk>', ShowProfilePageView.as_view(), name = "show_doctors_profile_page"),
+    path('drprofile/<int:pk>',ShowDoctorsProfilePageView.as_view(), name = "show_doctors_profile_page"),
     path('profile/<int:pk>', ShowProfilePageView.as_view(), name = "show_profile_page"),    #  adding a profile
     path('profile/<int:pk>/update', UpdateProfileView.as_view(), name = "update_profile"),  # adding an update profile
     path('drprofile/<int:pk>/update', UpdateDoctorsProfileView.as_view(), name = "update_doctors_profile"),
