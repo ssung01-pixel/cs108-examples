@@ -1,16 +1,14 @@
-<!-- profile/show_all_profiles.html -->
-<!-- Author: Sarinna Sung, (ssung101@bu.edu), 03/24/2021-->
-<!-- delegated work to the template called show_all_profiles.html rendering a table
-   Profile records, one per line. Include the first name, last name, city, and
-    a profile image, using the data attributes stored in the Profile model.
--->
- 
-<!--inherit from base.html-->
+<!-- File: project/show_all_doctors_profiles.html-->
+<!-- Author: Sarinna Sung, (ssung101@bu.edu), 04/27/2021-->
+<!-- This file will have 2 small forms: One to confirm the delete. It will
+   send a POST back to the same URL at which you are trying to do the delete.
+   One to cancel the delete. It will send a GET to URL to redisplay the profile page. -->
+   <!--inherit from base.html-->
 {% extends 'project/base.html' %}
 {% block content %}
 
 <!-- display the context data -->
-<h2 style="color:rgb(124, 66, 178); font-size: 40pt;"><center> Patients </center></h2> <!-- Creating a new heading for showing all the profiles, adding a color, adding a font size, and centering-->
+<h2 style="color:rgb(124, 66, 178); font-size: 40pt;"><center> Doctors </center></h2> <!-- Creating a new heading for showing all the profiles, adding a color, adding a font size, and centering-->
  
 <table > <!-- Creating a table-->
   
@@ -33,22 +31,15 @@
 
     </p>
 
-    {% for profile in profiles %} <!-- create a loop to display the first name, last name, city, email address, image if the person -->
+   {% for profile in drprofiles %} <!-- create a loop to display the first name, last name, city, email address, image if the person -->
     <!-- if the profile is doctor then referecne the attribute in models dont print it out. if it is a pt else just pass-->
      
      <tr> <!-- using the attributes and displaying each of them and centering them -->
-         <td><center><a href = "{% url 'show_profile_page' profile.pk %}">{{profile.first_name}} {{profile.last_name}}</a>  </center></td> <!-- from the homepage this will provide a link for each of the profiles there is a link directed to the seperate profile-->
+         <td><center><a href = "{% url 'show_doctors_profile_page' profile.pk %}">{{profile.first_name}} {{profile.last_name}}</a>  </center></td> <!-- from the homepage this will provide a link for each of the profiles there is a link directed to the seperate profile-->
          <td><center>{{profile.city}}</center></td>  <!-- the attribute for the profile's city-->
          <td><center>{{profile.email_address}}</center></td> <!-- the attribute for the profile's email address-->
          <td><center><img src= "{{profile.profile_img_url}}" style = "max-width:200; max-height: 200"></center></td> <!-- adding an image and creating image source and sizing the picture size.-->
      </tr>
    
      {% endfor %} <!-- to end the loop we need this statement -->
-
-  
- 
-</table>
-{% endblock %} <!-- from the base.html endblock-->
- 
- 
  

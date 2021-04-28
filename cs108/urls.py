@@ -26,7 +26,7 @@ urlpatterns = [
     path('quotes/', include('quotes.urls')),
     path('mini_fb/', include('mini_fb.urls')),
     path('project/', include('project.urls')),
-     # new! link in URLS from our app
+    path('', include('django.contrib.auth.urls')), # new! link in URLS from our app
     
 ]
 

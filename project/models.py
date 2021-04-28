@@ -19,7 +19,7 @@ class Profile(models.Model):
     email_address = models.TextField(blank=True) # creating a email address text field
     profile_img_url = models.URLField(blank=True) # creating a URL feild for the picture attribute
     friends = models.ManyToManyField("self", blank=True) # blank = true that means not everything is not required. one profile doesnt need friends self is refereed to the profile object
-   
+
     def __str__(self):
         '''Return a string representation of this object. '''
 
@@ -59,36 +59,6 @@ class Profile(models.Model):
         possible_friends = possible_friends.exclude(pk=self.pk) # excluding yourself as a friend
         return possible_friends # returning possible friends
 
-class DailyLog(models.Model):
-    ''' models the data attributes of Facebook users.'''
-
-    # data attributes:
-    profile = models.ForeignKey(Profile,default=1, on_delete=models.CASCADE)
-    time = models.TimeField(auto_now=True) # creating a first name text field
-    date = models.DateField(auto_now=True, null=True, blank=True) # creating a last name text field
-    Oxygen_level = models.TextField(blank= True) # creating a blood type
-    emotions = models.TextField(blank=True) # creating a city text feild
-    Comments = models.TextField(blank=True) # creating a email address text field
-
-    def __str__(self):
-        '''Return a string representation of this object. '''
-
-        return f'{self.client}, {self.time}, {self.date}' # how the string is represented on the django admin. 
-
-class StatusMessage(models.Model):
-    ''' models the data attributes of Facebook status message. '''
-
-    timestamp = models.TimeField(auto_now=True) # creating the time at which this status message was created/saved DateTimeFeild for the date and the time autoadd now is when the message auto generate time was posted at
-    message = models.TextField(blank=True) # creating the text of the status message
-    profile = models.ForeignKey(Profile, default =1, on_delete=models.CASCADE) # the foreign key to indicate the relationship to the Profile of the creator of this message
-    image_file = models.ImageField(blank = True) # an actual image
-
-    def __str__(self):
-        ''' Return a string representation of this profile. '''
-        
-        return f'{self.timestamp} {self.message} {self.client}' # how the string is represented in the django admin
-
-
 class Doctor(models.Model):
     ''' models the data attributes of Facebook users.'''
 
@@ -104,12 +74,33 @@ class Doctor(models.Model):
         '''Return a string representation of this object. '''
 
         return f'{self.last_name}, {self.first_name}' # how the string is represented on the django admin. 
+    
+    def get_absolute_url(self):
+        '''Provide a url to show this object '''
+        return reverse('show_profile_page', kwargs={'pk':self.pk}) #return a URL to show this one profile
+
+class StatusMessage(models.Model):
+    ''' models the data attributes of Facebook status message. '''
+
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE) # the foreign key to indicate the relationship to the Profile of the creator of this message
+    timestamp = models.TimeField(auto_now=True) # creating the time at which this status message was created/saved DateTimeFeild for the date and the time autoadd now is when the message auto generate time was posted at
+    message = models.TextField(blank=True) # creating the text of the status message
+    image_file = models.ImageField(blank = True) # an actual image
+    Oxygen_level = models.TextField(blank= True) # creating a blood type
+    emotions = models.TextField(blank=True) # creating a city text feild
+    Comments = models.TextField(blank=True) # creating a email address text field
+
+
+    def __str__(self):
+        ''' Return a string representation of this profile. '''
+        
+        return f'{self.timestamp} {self.message} {self.profile}' # how the string is represented in the django admin
 
 class Appointment(models.Model):
     ''' models the data attributes of Facebook users.'''
 
     # data attributes:
-    profile = models.ForeignKey(Profile,default = 1, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     time = models.TimeField(auto_now=False)
     date = models.DateField(auto_now=False, null=True, blank=True) 
@@ -117,4 +108,4 @@ class Appointment(models.Model):
     def __str__(self):
         '''Return a string representation of this object. '''
 
-        return f'{self.client}, {self.doctor}' # how the string is represented on the django admin. 
+        return f'{self.profile}, {self.doctor}' # how the string is represented on the django admin. 

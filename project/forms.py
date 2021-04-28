@@ -3,7 +3,7 @@
 # Description: Creating Forms to show on the 
 
 from django import forms
-from .models import Profile, StatusMessage
+from .models import *
 
 class CreateProfileForm(forms.ModelForm):
     ''' A form to create a new Profile object. '''
@@ -30,7 +30,7 @@ class CreateDoctorProfileForm(forms.ModelForm):
     
     class Meta:
         ''' additional data about this form '''
-        model = Profile # which model to create 
+        model = Doctor # which model to create 
         fields = ['first_name', 'last_name', 'birth_date','city', 'email_address', 'profile_img_url'] # which fields to create
         
 class UpdateProfileForm(forms.ModelForm):
@@ -52,4 +52,4 @@ class CreateStatusMessageForm(forms.ModelForm):
     class Meta:
         ''' additional data about this form '''
         model = StatusMessage # which model to create 
-        fields = ['message', 'image_file'] # which fields for the status message
+        fields = ['message','Oxygen_level','emotions','Comments', 'image_file'] # which fields for the status message

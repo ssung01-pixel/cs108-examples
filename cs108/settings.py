@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'quotes.apps.QuotesConfig', 
     'mini_fb.apps.MiniFbConfig', 
     'project.apps.ProjectConfig', # new application!
+    'registration.apps.RegistrationConfig',
 ]
 
 MIDDLEWARE = [

@@ -8,13 +8,17 @@ from .views import * # ShowAllProfilesView, ShowProfilePageView our view class d
 #  creating a list of URL patterns to show profile
 urlpatterns = [
     path('', ShowAllProfilesView.as_view(), name = "show_all_profiles"),                    #  showing all profiles
+    path('doctors', ShowAllDoctorsProfilesView.as_view(), name = "doctors"),
+    path('drprofile/<int:pk>', ShowProfilePageView.as_view(), name = "show_doctors_profile_page"),
     path('profile/<int:pk>', ShowProfilePageView.as_view(), name = "show_profile_page"),    #  adding a profile
     path('profile/<int:pk>/update', UpdateProfileView.as_view(), name = "update_profile"),  # adding an update profile
+    path('drprofile/<int:pk>/update', UpdateDoctorsProfileView.as_view(), name = "update_doctors_profile"),
+    path('profile/<int:pk>/delete', DeleteProfileView.as_view(), name = "delete_profile"), #delete
     path('create_profile', CreateProfileView.as_view(), name = "create_profile"),           #  adding a create profile 
+    path('create_doctor_profile', CreateDoctorProfileView.as_view(), name = "create_doctor_profile"),
     path('profile/<int:pk>/post_status', post_status_message, name = "post_status_message"), #  adding a post status message
     path('profile/<int:profile_pk>/delete_status/<int:status_pk>',DeleteStatusMessageView.as_view(), name = "delete_status_message"), # adding a delete status for the status message
     path('profile/<int:pk>/news_feed', ShowNewsFeedView.as_view(), name = "news_feed"), # adding a newsfeed page
     path('profile/<int:pk>/show_possible_friends', ShowPossibleFriendsView.as_view(), name = "show_possible_friends"), # showing possible friends
     path('profile/<int:profile_pk>/add_friend/<int:friend_pk>', add_friend, name = "add_friend"), # adding friend 
-    path('create_doctor_profile', CreateDoctorProfileView.as_view(), name = "create_doctor_profile"),
 ]

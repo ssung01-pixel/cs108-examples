@@ -3,14 +3,14 @@
 # description: provide a view to send to the user.
 
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
-from .models import Profile, StatusMessage
-from .forms import CreateProfileForm, CreateDoctorProfileForm, UpdateProfileForm, CreateStatusMessageForm
+from django.views.generic import *
+from .models import *
+from .forms import *
 from django.shortcuts import redirect
 from django.urls import reverse
 
 # Create your views here.
-
+    
 class ShowAllProfilesView(ListView): 
     ''' Show the listing on Profile ''' 
     # creating three data attributes
@@ -18,6 +18,19 @@ class ShowAllProfilesView(ListView):
     template_name = "project/show_all_profiles.html" # create template that I am going to display this data.
     context_object_name = "profiles"                 # name of the variable to access from within the data.
 
+
+class ShowAllDoctorsProfilesView(ListView):
+    ''' Show the listing of the Doctors profile'''
+    model = Doctor
+    template = "project/show_all_doctors_profiles.html"
+    context_object_name = "drprofiles"
+
+class ShowDoctorsProfilePageView(DetailView):
+    '''Display a single Profile object'''
+    model = Doctor                                   # retrieve Profile objects from the data database
+    template_name = "project/show_doctors_profile_page.html"    # create template that I am going to display this data.
+    context_object_name = "drprofiles"                     # name of the variable to access from within the data.
+    
 class ShowProfilePageView(DetailView):
     '''Display a single Profile object'''
     model = Profile                                     # retrieve Profile objects from the data database
@@ -55,6 +68,31 @@ class UpdateProfileView(UpdateView):
     model = Profile                                     # retrieve Profile objects from the data database         
     form_class = UpdateProfileForm                      # creating the profile form class
     template_name = "project/update_profile_form.html"  # create template that I am going to display this data.
+
+class UpdateDoctorsProfileView(UpdateView):
+    ''' Update a Profile Object and store it into the database'''
+    model = Profile                                     # retrieve Profile objects from the data database         
+    form_class = UpdateProfileForm                      # creating the profile form class
+    template_name = "project/update_doctor_profile_form.html"  # create template that I am going to display this data.
+
+class DeleteProfileView(DeleteView):
+    ''' Update a Profile Object and remove it into the database'''                            
+    template_name = "project/delete_profile_form.html"  # create template that I am going to display this data.
+    queryset = Profile.objects.all()
+    #success_url = "../../all"
+
+    def get_success_url(self):
+        ''' Return a the URL to which we should be directed after the delete. '''
+        
+        # get the pk for this quote
+        pk = self.kwargs.get('pk') # find the pk of the quote being deleted
+        profile = Profile.objects.filter(pk=pk).first() # get one object form QuerySet
+
+        # find the person associated with the quote
+        # person = profile.profile1
+        return reverse('show_all_profiles') # show the person page for 
+
+        #reverse to show the person page
 
 def post_status_message(request, pk):
     ''' Process a form submission to post a new status message. '''

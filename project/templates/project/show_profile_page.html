@@ -1,79 +1,89 @@
 <!-- project/show_profile_page.html -->
 <!-- Author: Sarinna Sung, (ssung101@bu.edu), 03/24/2021-->
-<!-- to render a profile page for one user (i.e., a single Profile record). On this page, 
-    include a larger-format image, and decide on the formatting that suits you to display 
-    the data attributes stored in the Profile record.
+<!-- to render a profile page for one user (i.e., a single Profile record). On this page,
+   include a larger-format image, and decide on the formatting that suits you to display
+   the data attributes stored in the Profile record.
 -->
-
+ 
 <!--inherit from base.html-->
-{% extends 'profile/base.html' %}
+{% extends 'project/base.html' %}
 {% block content %}
-
+ 
 <body>
-    <a href = "{% url 'news_feed' profile.pk %}"> {{profile.first_name}} New's Feed </a>  |<!-- the home page is all the profiles shown-->
-    <a href = "{% url 'show_possible_friends' profile.pk %}"> {{profile.first_name}} Show Possible Friends </a>  |<!-- the home page is all the profiles shown-->
+   <a href = "{% url 'news_feed' profile.pk %}"> {{profile.first_name}} New's Feed </a>  |<!-- the home page is all the profiles shown-->
+   <a href = "{% url 'show_possible_friends' profile.pk %}"> {{profile.first_name}} Show Possible Friends </a>  |<!-- the home page is all the profiles shown-->
+ 
+   <tr> <!-- using the attributes and displaying each of them and centering them -->
+       <td><strong><center>{{profile.first_name}} {{profile.last_name}} </center></strong></td> <br> <!-- displaying the first name and last name of the specific profile -->
+       <td><center><img src= "{{profile.profile_img_url}}" style = "max-width:200; max-height: 200"></center> </td> <br> <!-- adding an image and creating image source and sizing the picture size.-->
+       <td><center>{{profile.email_address}}</center></td> <br> <!--displaying the email address of the specific profile selected-->
+       <td><center>{{profile.city}}</center></td> <br> <!--displaying the city of the specific profile selected-->
+       <td><center><a href = "{% url 'update_profile' profile.pk %}">Edit this Profile</a>  </center></td>
+       <td><center><a href = "{% url 'delete_profile' profile.pk %}">Delete this Profile</a>  </center></td>
+   </tr>
+ 
+   <h1> <strong>Status Message</strong><!-- displaying the Status Message name--></h1>
+   <table>
+       <tr><th colspan="1" scope="colgroup">Time</th> <!-- displaying the Time name-->
+           <th colspan="1" scope="colgroup">Message</th> <!-- displaying the Message name-->
+           <th colspan="1" scope="colgroup">Oxygen_level </th>
+           <th colspan="1" scope="colgroup"> emotions </th>
+           <th colspan="1" scope="colgroup"> comments </th>
 
-    <tr> <!-- using the attributes and displaying each of them and centering them -->
-        <td><strong><center>{{profile.first_name}} {{profile.last_name}} </center></strong></td> <br> <!-- displaying the first name and last name of the specific profile -->
-        <td><center><img src= "{{profile.profile_img_url}}" style = "max-width:200; max-height: 200"></center> </td> <br> <!-- adding an image and creating image source and sizing the picture size.-->
-        <td><center>{{profile.email_address}}</center></td> <br> <!--displaying the email address of the specific profile selected-->
-        <td><center>{{profile.city}}</center></td> <br> <!--displaying the city of the specific profile selected-->
-        <td><center><a href = "{% url 'update_profile' profile.pk %}">Edit this Profile</a>  </center></td> 
-    </tr> 
-
-    <h1> <strong>Status Message</strong><!-- displaying the Status Message name--></h1>
-    <table>
-        <tr><th colspan="1" scope="colgroup">Time</th> <!-- displaying the Time name-->
-            <th colspan="2" scope="colgroup">Message</th> <!-- displaying the Message name-->
-        </tr>
-
-   
-    {% for sm in profile.get_status_messages %} <!-- creating a loop to go through the profiles messages to print out the messages that the person has-->
-
-    <tr>
-        <tr><td></td></tr>
-        <td>{{sm.timestamp}}</td> <!-- getting the status messages from profile and displaying each of the timestamp-->
-        <td>{{sm.message}} <!-- getting the status messages from profile and displaying each of the messages-->
-        {% if sm.image_file %} <!-- if it is an image_file then display it-->
-        <img src='{{sm.image_file.url}}' style='max-width: 100;'> <!-- getting the image and displaying-->
-        {% endif %}
-        </td>
-        <td> <a href = "{% url 'delete_status_message' profile_pk=profile.pk  status_pk=sm.pk%}"> delete </a></td> <!-- link to delete status messages-->
-    </tr>
-    {% endfor %} <!-- ending the loop -->
-    </table>
-
-    <h1>Post a Status Message</h1> <!-- headings for status message-->
-
-    <form method="POST" action="{% url 'post_status_message' profile.pk %}" 
-        enctype="multipart/form-data"> <!-- HTTP POST to send data to the server -->
-        
-        {% csrf_token %}
-        <table> 
-        {{create_status_form.as_table}} <!-- table-style formatting -->
-        <tr>
-            <td></td> <!-- empty! -->
-            <td><input type="submit" value="Share"></td>
-        </tr>
-        </table>
-        
-    </form>
-    <table>
-
-    <h1> {{profile.first_name}}'s Friends </h1> <!-- heading for the profiles persons friends-->
-
-    {% if profile.get_friends %} <!-- if the method is returning anything. get_friend method query set-->
-
-        {% for friend in profile.get_friends %} <!-- for every friend of that profile it would show the friend name is displayed and link to their profile page and picture of their friend-->
-            <tr><td><a href = "{% url 'show_profile_page' friend.pk %}" >{{friend.first_name}} {{friend.last_name}} </a></td> <!-- that is the actual process that is used in the hyperlink anchor tage everything inside is the process that I am applying <a    inside here> -->
-            <td><img src= "{{friend.profile_img_url}}" style = "max-width:200; max-height: 200"></td></tr> <!-- displaying image of that friends profile -->
-            <!-- tr is one row, td that is one instance in a column , tr in three td tags is one row and 3 values in three diffferent column. -->
-    
-        {% endfor %}<!-- of the for loop-->
-
-    {% else %}
-        {{friend.first_name}} doesn't have any friends. <!-- if that profile doesnt have any friends it would display this-->
-    {% endif %} <!-- ending the conditonal statement-->
-
-    </table>
+       </tr>
+ 
+ 
+   {% for sm in profile.get_status_messages %} <!-- creating a loop to go through the profiles messages to print out the messages that the person has-->
+ 
+   <tr>
+       <tr><td></td></tr>
+       <td><center></center>{{sm.timestamp}}</td> <!-- getting the status messages from profile and displaying each of the timestamp-->
+       <td><center> {{sm.message}} </center> </td> <!-- getting the status messages from profile and displaying each of the messages-->
+       <td><center>{{sm.Oxygen_level}}</center></td> 
+       <td><center>{{sm.emotions}}</center></td>
+       <td><center>{{sm.Comments}}</center></td>
+       <td>{% if sm.image_file %} <!-- if it is an image_file then display it-->
+       <center><img src='{{sm.image_file.url}}' style='max-width: 100;'></center> <!-- getting the image and displaying-->
+       {% endif %}
+       </td>
+       </td>
+       <td> <a href = "{% url 'delete_status_message' profile_pk=profile.pk  status_pk=sm.pk%}"> delete </a></td> <!-- link to delete status messages-->
+   </tr>
+   {% endfor %} <!-- ending the loop -->
+   </table>
+ 
+   <h1>Post a Status Message</h1> <!-- headings for status message-->
+ 
+   <form method="POST" action="{% url 'post_status_message' profile.pk %}"
+       enctype="multipart/form-data"> <!-- HTTP POST to send data to the server -->
+      
+       {% csrf_token %}
+       <table>
+       {{create_status_form.as_table}} <!-- table-style formatting -->
+       <tr>
+           <td></td> <!-- empty! -->
+           <td><input type="submit" value="Share"></td>
+       </tr>
+       </table>
+      
+   </form>
+   <table>
+ 
+   <h1> {{profile.first_name}}'s Friends </h1> <!-- heading for the profiles persons friends-->
+ 
+   {% if profile.get_friends %} <!-- if the method is returning anything. get_friend method query set-->
+ 
+       {% for friend in profile.get_friends %} <!-- for every friend of that profile it would show the friend name is displayed and link to their profile page and picture of their friend-->
+           <tr><td><a href = "{% url 'show_profile_page' friend.pk %}" >{{friend.first_name}} {{friend.last_name}} </a></td> <!-- that is the actual process that is used in the hyperlink anchor tage everything inside is the process that I am applying <a    inside here> -->
+           <td><img src= "{{friend.profile_img_url}}" style = "max-width:200; max-height: 200"></td></tr> <!-- displaying image of that friends profile -->
+           <!-- tr is one row, td that is one instance in a column , tr in three td tags is one row and 3 values in three diffferent column. -->
+  
+       {% endfor %}<!-- of the for loop-->
+ 
+   {% else %}
+       {{profile.first_name}} doesn't have any friends. <!-- if that profile doesnt have any friends it would display this-->
+   {% endif %} <!-- ending the conditonal statement-->
+ 
+   </table>
 {% endblock %}
+

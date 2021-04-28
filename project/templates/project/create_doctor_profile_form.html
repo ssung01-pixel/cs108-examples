@@ -1,30 +1,31 @@
 <!-- project/create_profile_form.html -->
 <!-- Author: Sarinna Sung, (ssung101@bu.edu), 03/24/2021-->
 <!-- delegated work to the template called show_all_profiles.html rendering a table
-    Profile records, one per line. Include the first name, last name, city, and
-     a profile image, using the data attributes stored in the Profile model.
+   Profile records, one per line. Include the first name, last name, city, and
+    a profile image, using the data attributes stored in the Profile model.
 -->
 {% extends 'project/base.html' %}
-
+ 
 {% block content %}
-
+ 
 <h1>Create Doctor Profile</h1>
-
+ 
 <form method="POST"> <!-- HTTP POST to send data to the server -->
-    {% csrf_token %}
-
-    <!-- display the form context variable -->
-    <!-- {{form}} display the form without formatting --> 
-
-    <!-- {{form.as_p}} paragraph style formatting -->
-    <table> 
-    {{form.as_table}} <!-- table-style formatting -->
-    <tr>
-        <td></td> <!-- empty! -->
-        <td><input type="submit" value="Add a Doctor Profile!"></td>
-    </tr>
-    </table>
-    
+   {% csrf_token %}
+ 
+   <!-- display the form context variable -->
+   <!-- {{form}} display the form without formatting -->
+ 
+   <!-- {{form.as_p}} paragraph style formatting -->
+   <table>
+   {{form.as_table}} <!-- table-style formatting -->
+   <tr>
+       <td></td> <!-- empty! -->
+       <td><input type="submit" value="Add a Doctor Profile!"></td>
+   </tr>
+   </table>
+  
 </form>
-
+ 
 {% endblock %}
+ 

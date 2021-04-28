@@ -1,0 +1,21 @@
+<!-- File: project/show_doctors_profile_page.html -->
+<!-- Author: Sarinna Sung, (ssung101@bu.edu), 04/27/2021-->
+<!-- This file will have 2 small forms: One to confirm the delete. It will
+   send a POST back to the same URL at which you are trying to do the delete.
+   One to cancel the delete. It will send a GET to URL to redisplay the profile page. -->
+   
+   <a href = "{% url 'news_feed' profile.pk %}"> {{profile.first_name}} New's Feed </a>  |<!-- the home page is all the profiles shown-->
+   <a href = "{% url 'show_possible_friends' profile.pk %}"> {{profile.first_name}} Show Possible Friends </a>  |<!-- the home page is all the profiles shown-->
+ 
+   <tr> <!-- using the attributes and displaying each of them and centering them -->
+       <td><strong><center>{{profile.first_name}} {{profile.last_name}} </center></strong></td> <br> <!-- displaying the first name and last name of the specific profile -->
+       <td><center><img src= "{{profile.profile_img_url}}" style = "max-width:200; max-height: 200"></center> </td> <br> <!-- adding an image and creating image source and sizing the picture size.-->
+       <td><center>{{profile.email_address}}</center></td> <br> <!--displaying the email address of the specific profile selected-->
+       <td><center>{{profile.city}}</center></td> <br> <!--displaying the city of the specific profile selected-->
+       <td><center><a href = "{% url 'update_profile' profile.pk %}">Edit this Profile</a>  </center></td>
+       <td><center><a href = "{% url 'delete_profile' profile.pk %}">Delete this Profile</a>  </center></td>
+   </tr>
+  
+ 
+ 
+ 

@@ -8,7 +8,6 @@ from django.contrib import admin
 from .models import *
 # register the profile model with the django admin application  mini_fb/admin.py
 
-admin.site.register(DailyLog)
 admin.site.register(StatusMessage)
 admin.site.register(Doctor)
 admin.site.register(Appointment)
