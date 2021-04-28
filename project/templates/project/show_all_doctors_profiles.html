@@ -9,27 +9,27 @@
 
 <!-- display the context data -->
 <h2 style="color:rgb(39, 30, 161); font-size: 40pt;"><center> Doctors </center></h2> <!-- Creating a new heading for showing all the profiles, adding a color, adding a font size, and centering-->
- 
-<table > <!-- Creating a table-->
-  
-   <colgroup> <!-- Adjusting the colum width and how it looks on the table-->
- 
-       <col span="1" style="width: 20%;">
-       <col span="1" style="width: 20%;">
-       <col span="1" style="width: 25%;">
-       <col span="1" style="width: 35%;">
-       <col span="1" style="width: 35%;">
- 
-   </colgroup>
-   <tr> <!-- Adding the column names on the table -->
-       <th>Name</th>
-       <th>City</th>
-       <th>Email Address</th>
-       <th>Profile Image</th>
-   </tr>
-    <p>
 
-    </p>
+<center>
+<table>  <!-- Creating a table-->
+  
+   <!--<colgroup> <!--Adjusting the colum width and how it looks on the table-->
+ 
+       <!-- <col span="1" style="width: 20%;">
+       <col span="1" style="width: 35%;">
+       <col span="1" style="width: 20%;">
+       <col span="1" style="width: 0%;">
+       <col span="1" style="width: 35%;"> -->
+ 
+   <!--</colgroup> -->
+
+   <tr> <!-- Adding the column names on the table -->
+        <th>Name</th>
+        <th>City</th>
+        <th>Email Address</th>
+        <th>Profile Image</th>
+   </tr>
+
 
    {% for profile in drprofiles %} <!-- create a loop to display the first name, last name, city, email address, image if the person -->
     <!-- if the profile is doctor then referecne the attribute in models dont print it out. if it is a pt else just pass-->
@@ -42,4 +42,7 @@
      </tr>
    
      {% endfor %} <!-- to end the loop we need this statement -->
+</table>
+</center>
+
  {% endblock %}
