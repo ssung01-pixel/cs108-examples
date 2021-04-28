@@ -77,7 +77,23 @@ class Doctor(models.Model):
     
     def get_absolute_url(self):
         '''Provide a url to show this object '''
-        return reverse('show_profile_page', kwargs={'pk':self.pk}) #return a URL to show this one profile
+
+        return reverse('show_doctors_profile_page', kwargs={'pk':self.pk}) #return a URL to show this one profile
+    
+    def get_news_feed(self):
+        ''' method on the Profile class that will obtain and return the new feed items. Specifically, this will return a QuerySet of all StatusMessages by this Profile and all of its friends.'''
+        all_appts = Appointment.objects.filter(doctor=self.pk) # get all the appointments with patients
+
+        qs = Appointment.objects.none() # empty queryset accumulator variable
+
+        for appt in all_appts: # pick all the appts each appt
+            qs = qs | appt.profile.get_status_messages() # all the appt with the profiles.
+
+        news =qs.order_by("-timestamp")  # this is to order all the status message -timestamp is from the newest status message to the oldest.
+        # go through lsit and find everybody that profile = that
+
+        return news # return the merged messages of profile's person and their friends
+
 
 class StatusMessage(models.Model):
     ''' models the data attributes of Facebook status message. '''

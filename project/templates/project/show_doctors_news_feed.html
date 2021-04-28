@@ -1,0 +1,25 @@
+<!-- project/show_news_feed.html -->
+<!-- Author: Sarinna Sung, (ssung101@bu.edu), 04/05/2021 -->
+<!-- This template page should show the news feed items (i.e., objects of type StatusMessage)  -->
+ 
+<a href = "{% url 'show_doctors_profile_page' profile.pk %}"> Back to {{profile.first_name}} profile page </a>  |<!-- the home page is all the profiles shown-->
+ 
+<h1> <strong>{{profile.first_name}}'s News Feed</strong><!-- displaying the Status Message name--></h1>
+   <table>
+   {% for sm in profile.get_news_feed %} <!-- creating a loop to go through the profiles messages to print out the messages that the person has-->
+ 
+   <tr>
+       <tr><td></td></tr>
+       <td>{{sm.timestamp}}</td><!-- getting the status messages from profile and displaying each of the timestamp-->
+       <td><a href = "{% url 'show_doctors_profile_page' sm.pk %}" >{{sm.profile.first_name}} {{sm.profile.last_name}} </a></td> <!-- displaying the profile of the friends first and last name and hyperlink that leads to their profile-->
+       <td> <img src='{{sm.profile.profile_img_url}}' style = "max-width:200; max-height: 50"></td> <!-- showing profile friends image -->
+       <td>
+           {% if sm.image_file %} <!-- if it is an image_file then display it-->
+       <img src='{{sm.image_file.url}}' style='max-width: 100;'> <!-- getting the image and displaying-->
+       {% endif %}
+       {{sm.message}} <!-- getting the status messages from profile and displaying each of the messages-->
+       </td>
+   </tr>
+   {% endfor %} <!-- ending the loop -->
+   </table>
+

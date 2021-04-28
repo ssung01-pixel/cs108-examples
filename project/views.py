@@ -71,7 +71,7 @@ class UpdateProfileView(UpdateView):
 
 class UpdateDoctorsProfileView(UpdateView):
     ''' Update a Profile Object and store it into the database'''
-    model = Profile                                     # retrieve Profile objects from the data database         
+    model = Doctor                                  # retrieve Profile objects from the data database         
     form_class = UpdateProfileForm                      # creating the profile form class
     template_name = "project/update_doctor_profile_form.html"  # create template that I am going to display this data.
 
@@ -91,6 +91,26 @@ class DeleteProfileView(DeleteView):
         # find the person associated with the quote
         # person = profile.profile1
         return reverse('show_all_profiles') # show the person page for 
+
+        #reverse to show the person page
+
+class DeleteDoctorsProfileView(DeleteView):
+    ''' Update a Profile Object and remove it into the database'''                            
+    template_name = "project/delete_doctor_form.html"  # create template that I am going to display this data.
+    context_object_name = "doctor"
+    queryset = Doctor.objects.all()
+    #success_url = "../../all"
+
+    def get_success_url(self):
+        ''' Return a the URL to which we should be directed after the delete. '''
+        
+        # get the pk for this quote
+        pk = self.kwargs.get('pk') # find the pk of the quote being deleted
+        profile = Doctor.objects.filter(pk=pk).first() # get one object form QuerySet
+
+        # find the person associated with the quote
+        # person = profile.profile1
+        return reverse('doctors') # show the person page for 
 
         #reverse to show the person page
 
@@ -177,6 +197,13 @@ class ShowNewsFeedView(DetailView):
     template_name = "project/show_news_feed.html"    # create template that I am going to display this data.
     context_object_name = "profile"                     # name of the variable to access from within the data.
 
+class ShowDoctorsNewsFeedView(DetailView):
+    ''' This base class will do everything we want, without overriding any methods.
+    Set the template_name and model attributes as you have done in the past when using the DetailView. '''
+    model = Doctor                                    # retrieve Profile objects from the data database
+    template_name = "project/show_doctors_news_feed.html"    # create template that I am going to display this data.
+    context_object_name = "profile"                     # name of the variable to access from within the data.
+    
 class ShowPossibleFriendsView(DetailView):
     '''  which inherits from the generic DetailView class. The base class will do everything we want, without overriding any methods.'''
     model = Profile # retrieve Profile objects from the data database
