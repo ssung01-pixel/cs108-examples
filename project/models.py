@@ -105,7 +105,7 @@ class StatusMessage(models.Model):
     image_file = models.ImageField(blank = True) # an actual image
     Oxygen_level = models.TextField(blank= True) # creating a blood type
     emotions = models.TextField(blank=True) # creating a city text feild
-    Comments = models.TextField(blank=True) # creating a email address text field
+    temperature = models.TextField(blank=True) # creating a temperature text field
 
 
     def __str__(self):

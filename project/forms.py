@@ -52,4 +52,4 @@ class CreateStatusMessageForm(forms.ModelForm):
     class Meta:
         ''' additional data about this form '''
         model = StatusMessage # which model to create 
-        fields = ['message','Oxygen_level','emotions','Comments', 'image_file'] # which fields for the status message
+        fields = ['message','Oxygen_level','emotions','temperature', 'image_file'] # which fields for the status message
