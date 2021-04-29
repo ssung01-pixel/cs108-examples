@@ -6,7 +6,7 @@
  
 {% block content %}
  
-<h1>Update Doctors Profile</h1>
+<h1 style="background-color:tomato;font-size: 40pt;font-family: Comic Sans MS" >Update Doctors Profile</h1>
  
 <form method="POST"> <!-- HTTP POST to send data to the server -->
    {% csrf_token %}
@@ -15,7 +15,7 @@
    <!-- {{form}} <!-- display the form without formatting -->
  
    <!-- {{form.as_p}} <!-- paragraph style formatting -->
-   <table>
+   <table style="color:rgb(6, 156, 94);font-size: 20pt;font-family:cursive">
    {{form.as_table}} <!-- table-style formatting -->
    <tr>
        <td></td> <!-- empty! -->

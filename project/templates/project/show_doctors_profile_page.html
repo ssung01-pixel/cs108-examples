@@ -8,18 +8,17 @@
 {% block content %}
 
    
-   <a href = "{% url 'doctor_news_feed' profile.pk %}"> {{profile.first_name}} Patients New's Feed </a>  |<!-- the home page is all the profiles shown-->
-   <a href = "{% url 'show_possible_friends' profile.pk %}"> {{profile.first_name}} Possible Patients </a>  |<!-- the home page is all the profiles shown-->
- 
+   <a style="color:rgb(156, 39, 6);font-size: 40pt;font-family: Trattatello" href = "{% url 'doctor_news_feed' profile.pk %}"> {{profile.first_name}} Patients Updates </a>  |<!-- the home page is all the profiles shown-->
+
    <tr> <!-- using the attributes and displaying each of them and centering them -->
-       <td><strong><center>{{profile.first_name}} {{profile.last_name}} </center></strong></td> <br> <!-- displaying the first name and last name of the specific profile -->
-       <td><center><img src= "{{profile.profile_img_url}}" style = "max-width:200; max-height: 200"></center> </td> <br> <!-- adding an image and creating image source and sizing the picture size.-->
-       <td><center>{{profile.email_address}}</center></td> <br> <!--displaying the email address of the specific profile selected-->
+       <td><strong> <a style = "color:rgb(124, 66, 178); font-size: 10pt;font-family: Courier New" ><center>{{profile.first_name}} {{profile.last_name}} </center></strong></td> <br></a> <!-- displaying the first name and last name of the specific profile -->
+       <td ><center><img src= "{{profile.profile_img_url}}" style = "max-width:200; max-height: 200"></center> </td> <br> <!-- adding an image and creating image source and sizing the picture size.-->
+       <td ><center><a style = "color:rgb(124, 66, 178); font-size: 10pt;font-family: Courier New" {{profile.email_address}}</center></td> <br> <!--displaying the email address of the specific profile selected-->
        <td><center>{{profile.city}}</center></td> <br> <!--displaying the city of the specific profile selected-->
-       <td><center><a href = "{% url 'update_doctors_profile' profile.pk %}">Edit this Profile</a>  </center></td>
-       <td><center><a href = "{% url 'delete_doctors_profile' profile.pk %}">Delete this Profile</a>  </center></td>
+       <td><center><a style="color:rgb(6, 156, 94);font-size: 20pt;font-family:cursive" href = "{% url 'update_doctors_profile' profile.pk %}">Edit this Profile</a>  </center></td>
+       <td><center><a style="color:rgb(6, 156, 94);font-size: 20pt;font-family:cursive" href = "{% url 'delete_doctors_profile' profile.pk %}">Delete this Profile</a>  </center></td>
    </tr>
-  
+
  
 {% endblock %}
  

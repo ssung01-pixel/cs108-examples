@@ -6,7 +6,7 @@
  
 {% block content %}
  
-<h1>Update Profile</h1>
+<h1 style="background-color:tomato;font-size: 40pt;font-family: Palatino">Update Profile</h1>
  
 <form method="POST"> <!-- HTTP POST to send data to the server -->
    {% csrf_token %}
@@ -19,7 +19,7 @@
    {{form.as_table}} <!-- table-style formatting -->
    <tr>
        <td></td> <!-- empty! -->
-       <td><input type="submit" value="Update"></td>
+       <td ><input type="submit" value="Update" style="color:rgb(124, 66, 178); font-size: 40pt;font-family: Courier New"></td>
    </tr>
    </table>
   

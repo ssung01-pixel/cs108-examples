@@ -7,17 +7,16 @@
    <html>
  
     <head>
-  
-        <title> Home Page </title> <!-- displaying the tite of the home -->
-        <body style = "background-color:rgb(241, 227, 245)">
+
+        <body style = "background-color:rgb(228, 202, 194)">
   
         <header>
-            <h1 style="color:rgb(90, 18, 206);"> Project </h1> <!--which has a link to the main URL you have (show_all_profiles); this will allow users to return to the main page.-->
+            <center> <h1 style="color:rgb(156, 39, 6); font-size: 80pt;font-family: Cursive;border:green; border-width:8px; border-style:dashed"> Quarantine Daily Tracker </h1>  </center><!--which has a link to the main URL you have (show_all_profiles); this will allow users to return to the main page.-->
             <br>
-            <a href = "{% url 'show_all_profiles' %}"> Patients </a>  |<!-- the home page is all the profiles shown-->
-            <a href = "{% url 'doctors' %}"> Doctors </a>             |
-            <a href = "{% url 'create_profile' %}"> Create Profile </a>        |<!-- the create new profile page-->
-            <a href = "{% url 'create_doctor_profile' %}"> Create Doctor Profile </a>      |<!-- the create new Doctor profile page-->
+            <a style="color:rgb(156, 39, 6);font-size: 20pt;font-family:Courier New" href = "{% url 'show_all_profiles' %}"> Patients </a>  |<!-- the home page is all the profiles shown-->
+            <a style="color:rgb(156, 39, 6);font-size: 20pt;font-family: courier" href = "{% url 'doctors' %}"> Doctors </a>             |
+            <a style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Palatino" href = "{% url 'create_profile' %}"> Create a Profile for Patient </a>        |<!-- the create new profile page-->
+            <a style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive" href = "{% url 'create_doctor_profile' %}"> Create a Doctor Profile </a>      |<!-- the create new Doctor profile page-->
         </header>
         <br>
         {% block content %} <!--Create a content block to be filled in by the pages that inherit from base.html.-->

@@ -5,11 +5,11 @@
     the table of status messages in the news feed page, and adjust it to work with the list
     of possible friends.-->
  
-    <h1>  Friend Suggestions for {{profile.first_name}} </h1> <!-- heading for the profiles persons friends-->
-    <a href = "{% url 'show_profile_page' profile.pk %}"> Back to {{profile.first_name}}'s profile page  </a>  <!-- link to go back to profile page -->
+    <h1 style="background-color:tomato;font-size: 40pt;font-family: Bradley Hand">  Friend Suggestions for {{profile.first_name}} </h1> <!-- heading for the profiles persons friends-->
+    <a style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive" href = "{% url 'show_profile_page' profile.pk %}"> Back to {{profile.first_name}}'s profile page  </a>  <!-- link to go back to profile page -->
    
-    {% if profile.get_friends %} <!-- if the method is returning anything. get_friend method query set-->
-    <table>
+    {% if profile.get_friend_suggestions %} <!-- if the method is returning anything. get_friend method query set-->
+    <table style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive">
            
     <colgroup> <!-- Adjusting the colum width and how it looks on the table-->
 
@@ -32,7 +32,7 @@
             <td>
             <form method = 'GET' action = "{% url 'add_friend' profile_pk=profile.pk friend_pk=friend.pk%}"> <!-- getting the friend profile and your profile and adding the profiles into the friend list-->
                 {% csrf_token %}
-                <input type = 'submit' name = "Add Friend" value = "Add Friend"> <!-- button to add friend-->
+                <input type = 'submit' name = "Add Friend" value = "Add Friend" style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive"> <!-- button to add friend-->
             </form>
         </td>
         {% endfor %}<!-- of the for loop-->

@@ -2,10 +2,12 @@
 <!-- Author: Sarinna Sung, (ssung101@bu.edu), 04/05/2021 -->
 <!-- This template page should show the news feed items (i.e., objects of type StatusMessage)  -->
  
-<a href = "{% url 'show_profile_page' profile.pk %}"> Back to {{profile.first_name}} profile page </a>  |<!-- the home page is all the profiles shown-->
+<a style="color:rgb(6, 156, 94);font-size: 20pt;font-family:cursive" href = "{% url 'show_profile_page' profile.pk %}"> Back to {{profile.first_name}} profile page </a>  |<!-- the home page is all the profiles shown-->
  
-<h1> <strong>{{profile.first_name}}'s News Feed</strong><!-- displaying the Status Message name--></h1>
-   <table>
+<h1 style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive"> <strong>{{profile.first_name}}'s News Feed</strong><!-- displaying the Status Message name--></h1>
+
+   <table style="color:rgb(6, 156, 94);font-size: 20pt;font-family:cursive">
+       
    {% for sm in profile.get_news_feed %} <!-- creating a loop to go through the profiles messages to print out the messages that the person has-->
  
    <tr>

@@ -84,7 +84,8 @@ class Doctor(models.Model):
         ''' method on the Profile class that will obtain and return the new feed items. Specifically, this will return a QuerySet of all StatusMessages by this Profile and all of its friends.'''
         all_appts = Appointment.objects.filter(doctor=self.pk) # get all the appointments with patients
 
-        qs = Appointment.objects.none() # empty queryset accumulator variable
+        qs = StatusMessage.objects.none() # empty queryset accumulator variable
+        #qs = Appointment.objects.none() # empty queryset accumulator variable
 
         for appt in all_appts: # pick all the appts each appt
             qs = qs | appt.profile.get_status_messages() # all the appt with the profiles.
