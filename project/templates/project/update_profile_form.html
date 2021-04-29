@@ -2,11 +2,13 @@
 <!-- Author: Sarinna Sung, (ssung101@bu.edu), 03/24/2021-->
 <!-- being able to update the profile form and given the option. -->
  
+
+<!--inherit from base.html-->
 {% extends 'project/base.html' %}
  
 {% block content %}
  
-<h1 style="background-color:tomato;font-size: 40pt;font-family: Palatino">Update Profile</h1>
+<h1 style="background-color:tomato;font-size: 40pt;font-family: Palatino">Update Profile</h1> <!-- heading style of the update profile form -->
  
 <form method="POST"> <!-- HTTP POST to send data to the server -->
    {% csrf_token %}
@@ -16,13 +18,13 @@
  
    <!-- {{form.as_p}} <!-- paragraph style formatting -->
    <table>
-   {{form.as_table}} <!-- table-style formatting -->
+   <a style =" font-size: 40pt;font-family: Palatino">{{form.as_table}} <!-- table-style formatting -->
    <tr>
        <td></td> <!-- empty! -->
-       <td ><input type="submit" value="Update" style="color:rgb(124, 66, 178); font-size: 40pt;font-family: Courier New"></td>
+       <td ><input type="submit" value="Update" style="color:rgb(124, 66, 178); font-size: 40pt;font-family: Courier New"></td> <!-- style of the form for update profile-->
    </tr>
    </table>
   
 </form>
  
-{% endblock %}
+{% endblock %} <!-- endblock from base.html-->

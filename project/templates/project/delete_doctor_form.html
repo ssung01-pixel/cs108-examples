@@ -1,8 +1,12 @@
 <!-- delete_profile_form.html -->
+<!-- Author: Sarinna Sung, (ssung101@bu.edu), 03/24/2021-->
+<!-- Deleting the doctor profile form. This file will have 2 small forms: One to confirm the delete. It will
+     send a POST back to the same URL at which you are trying to do the delete.
+     One to cancel the delete. It will send a GET to URL to redisplay the profile page. -->
 
-<h3 style="color:rgb(156, 39, 6);font-size: 40pt;font-family: verdana"> <strong>Are you sure you want to delete this Doctors profile?</strong></h3>
+<h3 style="color:rgb(156, 39, 6);font-size: 40pt;font-family: verdana"> <strong>Are you sure you want to delete this Doctors profile?</strong></h3> <!-- style of the heading when deleteing the doctor patient profile-->
 
-<a style="color:rgb(156, 39, 6);font-size: 30pt;font-family: monospace">{{doctor}}
+<a style="color:rgb(156, 39, 6);font-size: 30pt;font-family: monospace">{{doctor}} <!-- style of the displayign of the name of the profile wanted to be deleted-->
 
 <p>
 
@@ -10,12 +14,12 @@
 
 <form method = 'POST'>
     {% csrf_token %}
-    <input type = 'submit' name = "yes" value = "yes"  style="color:rgb(156, 39, 6);font-size: 10pt;font-family: fantasy">
+    <input type = 'submit' name = "yes" value = "yes"  style="color:rgb(156, 39, 6);font-size: 10pt;font-family: fantasy"> <!-- the style of the form being filled out-->
 </form>
 
 <form method = 'GET' action = "{% url 'doctors'%}">
     {% csrf_token %}
-    <input type = 'submit' name = "no" value = "no"  style="color:rgb(156, 39, 6);font-size: 10pt;font-family: monospace">
+    <input type = 'submit' name = "no" value = "no"  style="color:rgb(156, 39, 6);font-size: 10pt;font-family: monospace"> <!-- the style of the button-->
 </form>
 
 

@@ -1,9 +1,11 @@
 <!-- File: project/show_all_doctors_profiles.html-->
 <!-- Author: Sarinna Sung, (ssung101@bu.edu), 04/27/2021-->
-<!-- This file will have 2 small forms: One to confirm the delete. It will
-   send a POST back to the same URL at which you are trying to do the delete.
-   One to cancel the delete. It will send a GET to URL to redisplay the profile page. -->
-   <!--inherit from base.html-->
+<!-- Description: delegated work to the template called show_all_doctors_profiles.html rendering a table
+                  Profile records, one per line. Include the first name, last name, city, and
+                  a profile image, using the data attributes stored in the Profile model.-->
+  
+  
+<!--inherit from base.html-->
 {% extends 'project/base.html' %}
 {% block content %}
 
@@ -12,16 +14,6 @@
 
 <center>
 <table style="border:green; border-width:8px; border-style:dashed;color:rgb(156, 39, 6);font-size: 20pt;font-family:fantasy">  <!-- Creating a table-->
-  
-   <!--<colgroup> <!--Adjusting the colum width and how it looks on the table-->
- 
-       <!-- <col span="1" style="width: 20%;">
-       <col span="1" style="width: 35%;">
-       <col span="1" style="width: 20%;">
-       <col span="1" style="width: 0%;">
-       <col span="1" style="width: 35%;"> -->
- 
-   <!--</colgroup> -->
 
    <tr> <!-- Adding the column names on the table -->
     <th style= "color:rgb(83, 0, 35);font-family: Apple Chancery; font-size: 20pt;">Name</th>
@@ -45,4 +37,4 @@
 </table>
 </center>
 
- {% endblock %}
+ {% endblock %} <!-- endblock from base.html-->

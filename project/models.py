@@ -1,6 +1,6 @@
-# File: models.py
+# File: project/models.py
 # Author: Sarinna Sung, (ssung101@bu.edu), 04/15/2021
-# Description: models.py will model the data attributes of Covid tracking users. Create your models here
+# Description: project/models.py will model the data attributes of Covid tracking users. Create your models here
 
 from django.db import models
 from django.urls import reverse
@@ -117,10 +117,10 @@ class Appointment(models.Model):
     ''' models the data attributes of Facebook users.'''
 
     # data attributes:
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
-    time = models.TimeField(auto_now=False)
-    date = models.DateField(auto_now=False, null=True, blank=True) 
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE) # foreign key for the profile indicating replationshop between Profile of the creator of this appt
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)# foreign key for the drprofile indicating replationshop between Profile of the creator of this appt
+    time = models.TimeField(auto_now=False) # time of appt
+    date = models.DateField(auto_now=False, null=True, blank=True) # date of appt
 
     def __str__(self):
         '''Return a string representation of this object. '''

@@ -1,12 +1,14 @@
 <!-- File: project/update_doctor_profile_form.html-->
 <!-- Author: Sarinna Sung, (ssung101@bu.edu), 04/27/2021-->
-<!-- being able to update the profile form and given the option. -->
+<!-- being able to update the doctor profile form and given the option. -->
  
+<!--inherit from base.html-->
+
 {% extends 'project/base.html' %}
  
 {% block content %}
- 
-<h1 style="background-color:tomato;font-size: 40pt;font-family: Comic Sans MS" >Update Doctors Profile</h1>
+  
+<h1 style="background-color:tomato;font-size: 40pt;font-family: Comic Sans MS" >Update Doctors Profile</h1> <!-- heading style for updating drprofile -->
  
 <form method="POST"> <!-- HTTP POST to send data to the server -->
    {% csrf_token %}
@@ -15,14 +17,14 @@
    <!-- {{form}} <!-- display the form without formatting -->
  
    <!-- {{form.as_p}} <!-- paragraph style formatting -->
-   <table style="color:rgb(6, 156, 94);font-size: 20pt;font-family:cursive">
+   <table style="color:rgb(6, 156, 94);font-size: 20pt;font-family:cursive"> <!-- style of the form for drprofile-->
    {{form.as_table}} <!-- table-style formatting -->
    <tr>
        <td></td> <!-- empty! -->
-       <td><input type="submit" value="Update"></td>
+       <td><input type="submit" value="Update"></td> <!-- style of the update button for the dr profile-->
    </tr>
    </table>
   
 </form>
  
-{% endblock %}
+{% endblock %} <!-- endblock from base.html-->

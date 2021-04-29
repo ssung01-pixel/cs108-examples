@@ -1,6 +1,8 @@
-# file: project/view.py
+# File: project/view.py
 # Author: Sarinna Sung, ssung101@bu.edu, 04/15/2021
-# description: provide a view to send to the user.
+# Description: provide a view to send to the user. 
+#              Create your views here. create a class definition and inherit from
+#              the ListView. List View allows us to present many objects of one model in a single screen. 
 
 from django.shortcuts import render
 from django.views.generic import *
@@ -21,9 +23,9 @@ class ShowAllProfilesView(ListView):
 
 class ShowAllDoctorsProfilesView(ListView):
     ''' Show the listing of the Doctors profile'''
-    model = Doctor
-    template_name = "project/show_all_doctors_profiles.html"
-    context_object_name = "drprofiles"
+    model = Doctor                                     # retrieve drProfile objects from the data database
+    template_name = "project/show_all_doctors_profiles.html" #create template that I am going to display this data
+    context_object_name = "drprofiles"                  # name of the variable to access from within the data.
 
 class ShowDoctorsProfilePageView(DetailView):
     '''Display a single Profile object'''
@@ -97,8 +99,8 @@ class DeleteProfileView(DeleteView):
 class DeleteDoctorsProfileView(DeleteView):
     ''' Update a Profile Object and remove it into the database'''                            
     template_name = "project/delete_doctor_form.html"  # create template that I am going to display this data.
-    context_object_name = "doctor"
-    queryset = Doctor.objects.all()
+    context_object_name = "doctor"# creating a context objext name
+    queryset = Doctor.objects.all() # queryset of all the doctors 
     #success_url = "../../all"
 
     def get_success_url(self):
@@ -145,8 +147,8 @@ def post_status_message(request, pk):
 
 class DeleteStatusMessageView(DeleteView):
     ''' Create a new profile object and store it into the database'''                                          
-    template_name = "project/delete_status_form.html"
-    queryset = Profile.objects.all()
+    template_name = "project/delete_status_form.html" # creating a template
+    queryset = Profile.objects.all() # queryset of all the profiles
     success_url = "../../all" # what to do after deleting a quote
 
     def get_context_data(self, **kwargs):
@@ -211,7 +213,7 @@ class ShowPossibleFriendsView(DetailView):
 
 def add_friend(request, profile_pk, friend_pk):
     ''' The objective of this function is to process the add_friend request, to add a friend for a given profile. '''
-    profile = Profile.objects.get(pk=profile_pk) # getting our profile object
+    profile = Profile.objects.get(pk=profile_pk) # getting our patient profile object
     friend = Profile.objects.get(pk=friend_pk) # getting your friends profile object
     
     profile.friends.add(friend) # adding the profile of the friends and adding that friend to your friend list

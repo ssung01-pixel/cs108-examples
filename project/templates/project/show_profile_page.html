@@ -1,6 +1,6 @@
 <!-- project/show_profile_page.html -->
 <!-- Author: Sarinna Sung, (ssung101@bu.edu), 03/24/2021-->
-<!-- to render a profile page for one user (i.e., a single Profile record). On this page,
+<!-- to render a patient profile page for one user (i.e., a single Profile record). On this page,
    include a larger-format image, and decide on the formatting that suits you to display
    the data attributes stored in the Profile record.
 -->
@@ -10,16 +10,16 @@
 {% block content %}
  
 <body>
-   <a style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive" href = "{% url 'news_feed' profile.pk %}"> {{profile.first_name}} New's Feed </a>  |<!-- the home page is all the profiles shown-->
-   <a style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive" href = "{% url 'show_possible_friends' profile.pk %}"> {{profile.first_name}} Show Possible Friends </a>  |<!-- the home page is all the profiles shown-->
+   <a style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive" href = "{% url 'news_feed' profile.pk %}"> {{profile.first_name}} New's Feed </a>  |<!-- the home page is all the ptprofiles shown-->
+   <a style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive" href = "{% url 'show_possible_friends' profile.pk %}"> {{profile.first_name}} Show Possible Friends </a>  |<!-- the home page is all the ptprofiles shown-->
  
    <tr> <!-- using the attributes and displaying each of them and centering them -->
-       <td><strong><a style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive" ><center>{{profile.first_name}} {{profile.last_name}} </center></strong></td> <br> <!-- displaying the first name and last name of the specific profile -->
+       <td><strong><a style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive" ><center>{{profile.first_name}} {{profile.last_name}} </center></strong></td> <br> <!-- displaying the first name and last name of the specific ptprofile -->
        <td><center><img src= "{{profile.profile_img_url}}" style = "max-width:200; max-height: 200"></center> </td> <br> <!-- adding an image and creating image source and sizing the picture size.-->
        <td><center>{{profile.email_address}}</center></td> <br> <!--displaying the email address of the specific profile selected-->
-       <td><center>{{profile.city}}</center></td> <br> <!--displaying the city of the specific profile selected-->
-       <td><center><a style="color:rgb(6, 156, 94);font-size: 20pt;font-family:cursive" href = "{% url 'update_profile' profile.pk %}">Edit this Profile</a>  </center></td>
-       <td><center><a style="color:rgb(6, 156, 94);font-size: 20pt;font-family:cursive" href = "{% url 'delete_profile' profile.pk %}">Delete this Profile</a>  </center></td>
+       <td><center>{{profile.city}}</center></td> <br> <!--displaying the city of the specific ptprofile selected-->
+       <td><center><a style="color:rgb(6, 156, 94);font-size: 20pt;font-family:cursive" href = "{% url 'update_profile' profile.pk %}">Edit this Profile</a>  </center></td> <!-- editig the profile button-->
+       <td><center><a style="color:rgb(6, 156, 94);font-size: 20pt;font-family:cursive" href = "{% url 'delete_profile' profile.pk %}">Delete this Profile</a>  </center></td> <!-- deleting the profile button-->
    </tr>
  
    <h1 style="background-color:tomato;font-size: 40pt;font-family: Snell Roundhand"> <strong>Status Message</strong><!-- displaying the Status Message name--></h1>
@@ -33,12 +33,12 @@
        </tr>
  
  
-   {% for sm in profile.get_status_messages %} <!-- creating a loop to go through the profiles messages to print out the messages that the person has-->
+   {% for sm in profile.get_status_messages %} <!-- creating a loop to go through the ptprofiles messages to print out the messages that the person has-->
  
    <tr>
        <tr><td></td></tr>
-       <td><a style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive" ><center>{{sm.timestamp}}</center></td> <!-- getting the status messages from profile and displaying each of the timestamp-->
-       <td><center><a style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive" >{{sm.message}} </center> </td> <!-- getting the status messages from profile and displaying each of the messages-->
+       <td><a style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive" ><center>{{sm.timestamp}}</center></td> <!-- getting the status messages from ptprofile and displaying each of the timestamp-->
+       <td><center><a style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive" >{{sm.message}} </center> </td> <!-- getting the status messages from ptprofile and displaying each of the messages-->
        <td><center><a style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive" >{{sm.Oxygen_level}}</center></td> 
        <td><center><a style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive" >{{sm.emotions}}</center></td>
        <td><center><a style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive" >{{sm.temperature}}</center></td>
@@ -58,18 +58,18 @@
        enctype="multipart/form-data"> <!-- HTTP POST to send data to the server -->
       
        {% csrf_token %}
-       <table style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive">
+       <table style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive"> <!-- styling of the form for post a status message-->
        <a style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive">{{create_status_form.as_table}} <!-- table-style formatting -->
        <tr>
            <td></td> <!-- empty! -->
-           <td><input type="submit" value="Share" style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive"></td>
+           <td><input type="submit" value="Share" style="color:rgb(156, 39, 6);font-size: 20pt;font-family: Cursive"></td> <!-- styling for the share for the post a status message-->
        </tr>
        </table>
       
    </form>
    <table>
  
-   <h1 style="background-color:tomato;font-size: 40pt;font-family: Brush Script MT"> {{profile.first_name}}'s Friends </h1> <!-- heading for the profiles persons friends-->
+   <h1 style="background-color:tomato;font-size: 40pt;font-family: Brush Script MT"> {{profile.first_name}}'s Friends </h1> <!-- heading for the ptrofiles persons friends-->
  
    {% if profile.get_friends %} <!-- if the method is returning anything. get_friend method query set-->
  
@@ -85,5 +85,5 @@
    {% endif %} <!-- ending the conditonal statement-->
  
    </table>
-{% endblock %}
+{% endblock %} <!-- endblock from base.html-->
 
